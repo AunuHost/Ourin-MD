@@ -1,0 +1,17 @@
+*OURIN MD 3.3.1*
+
+( di versi ini cuman sedikit perbaikan )
+
+🌾 Apa aja yang di ubah / hapus / perbaiki?
+- memperbaiki masalah pada pairing ( semoga aja bisa di kalian )
+- menonaktifkann sistem auto restart ketika penggunaan memory / ram sudah melebihi batas
+- mengurangi jumlah pemakaian ram
+- memperbaiki plugin *fakedana* dan *fakebankjago* yang gagal ke load
+
+PERBAIKAN FITUR LAIN
+- ptvsearch
+- tiktoksearch
+- leaderboard
+- srt del
+
+NOTE: tambah gambar random, pakai command .srt
