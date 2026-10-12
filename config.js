@@ -1,7 +1,6 @@
 import { getDatabase } from "./src/lib/ourin-database.js";
 import * as ownerPremiumDb from "./src/lib/ourin-premium-db.js";
 
-//  utamakan baca object config sampai bawah
 const config = {
   info: {
     website: "https://firefly.maiku.my.id",
@@ -212,17 +211,17 @@ const config = {
   },
 
   APIkey: {
-    lolhuman: "APIKey-Milik-Bot-OurinMD(Zann,HyuuSATANN,Keisya,Danzz)",
-    neoxr: "Milik-Bot-OurinMD",
-    fgsi: "fgsiapi-20c1605c-6d",
-    google: "AIzaSyAS-KiW0SrwiYKwexeBcGPijBVHFg2R_vo",
-    groq: "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",
-    betabotz: "Btz-67YfP",
-    covenant: "cov_live_bb660c9e5f735e46d808b7ae362914cfe35c2936739ee2b2",
-    onlym: "ONLym-783d29",
-    obscura: "obs-byOn9RVGMzvPXZQTsP9W",
-    firefly: "OurinNextGen",
-    cuki: "cuki-x"
+    lolhuman: "contoh_apikey",
+    neoxr: "contoh_apikey",
+    fgsi: "contoh_apikey",
+    google: "contoh_apikey",
+    groq: "contoh_apikey",
+    betabotz: "contoh_apikey",
+    covenant: "contoh_apikey",
+    onlym: "contoh_apikey",
+    obscura: "contoh_apikey",
+    firefly: "contoh_apikey",
+    cuki: "contoh_apikey",
   },
 };
 
