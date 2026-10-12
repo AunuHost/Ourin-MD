@@ -31,9 +31,9 @@ permissions:
 
 jobs:
   ai-process:
-    # Cegah loop: bot membalas komentar → komentar bot memicu run baru.
-    # Guard 'Bot' saja TIDAK cukup karena AunuWise/RafaelPivots adalah akun User biasa.
-    if: "github.event.sender.type != 'Bot' && github.event.sender.login != 'AunuPivots' && github.event.sender.login != 'IKBAL-rgb'"
+    # Cegah loop via tipe Bot; balasan bot sendiri (akun User) ditangani di script
+    # via deteksi awalan "### 🤖" agar perintah user dari akun mana pun tetap jalan.
+    if: "github.event.sender.type != 'Bot'"
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -108,7 +108,9 @@ jobs:
             try {
               files = sh('git ls-files').split('\n').map(f => f.trim()).filter(Boolean);
             } catch { files = []; }
-            const SKIP = [/package-lock\.json$/, /yarn\.lock$/, /\.min\.js$/, /\.(png|jpe?g|gif|ico|mp4|zip|tar\.gz|woff2?)$/i];
+            // .github/workflows DIKECUALIKAN: berisi license key (sk_...) hasil inject — jangan sampai ke upstream AI.
+            const SKIP = [/package-lock\.json$/, /yarn\.lock$/, /\.min\.js$/, /\.github\/workflows\/.*\.ya?ml$/, /\.(png|jpe?g|gif|ico|mp4|zip|tar\.gz|woff2?)$/i];
+            const redactSecrets = (t) => t.replace(/sk_[a-f0-9]{16,}/gi, 'sk_[REDACTED]');
             const tree = files.join('\n');
             let budget = MAX_CONTEXT_BYTES;
             const parts = [];
@@ -123,7 +125,7 @@ jobs:
                 content = fs.readFileSync(full, 'utf8');
               } catch { continue; }
               if (content.includes('\0')) continue; // binary, lewati
-              const chunk = `\n\n===== FILE: ${f} =====\n${content.slice(0, budget)}`;
+              const chunk = `\n\n===== FILE: ${f} =====\n${redactSecrets(content).slice(0, budget)}`;
               parts.push(chunk);
               budget -= chunk.length;
             }
@@ -186,6 +188,17 @@ jobs:
 
             const isIssueEvent = context.eventName === 'issues' || context.eventName === 'issue_comment';
             const isPR = !!(context.payload.issue && context.payload.issue.pull_request);
+
+            // Anti-loop: balasan bot selalu diawali "### 🤖". Jika komentar pemicu adalah
+            // balasan bot sendiri, stop di sini (exit 0) — jangan panggil AI / kirim komentar baru.
+            // Deteksi ISI (bukan nama akun) agar perintah user dari akun AunuPivots/IKBAL-rgb tetap jalan.
+            if (context.eventName === 'issue_comment') {
+              const trigBody = String((context.payload.comment && context.payload.comment.body) || '');
+              if (trigBody.startsWith('### 🤖')) {
+                console.log('Komentar pemicu adalah balasan bot sendiri — skip agar tidak loop.');
+                process.exit(0);
+              }
+            }
 
             // ===== KUSTOMISASI: sesuaikan deskripsi project & aturan brand di bawah =====
             const systemPrompt = `Anda adalah AI senior developer untuk project ini. Pelajari stack & struktur repo dari konteks yang diberikan, lalu analisis kode, perbaiki bug, optimasi, atau implementasi fitur sesuai permintaan.
@@ -286,7 +299,13 @@ jobs:
             if (updates.length > 0 && !isPR) {
               const written = [];
               for (const f of updates) {
-                const p = safePath(f.path);
+                let p;
+                try {
+                  p = safePath(f.path);
+                } catch (e) {
+                  console.warn(`Lewati file tidak aman: ${f.path} (${e.message})`);
+                  continue;
+                }
                 fs.mkdirSync(path.dirname(path.join(REPO_ROOT, p)), { recursive: true });
                 fs.writeFileSync(path.join(REPO_ROOT, p), f.content, 'utf8');
                 written.push(p);
@@ -302,6 +321,8 @@ jobs:
               } else {
                 const files = [];
                 const seen = new Set();
+                let totalBytes = 0;
+                const MAX_FILE_BYTES = 200000, MAX_TOTAL_BYTES = 400000;
                 for (const line of changed) {
                   let cp = line.slice(3);
                   const arrow = cp.indexOf(' -> ');
@@ -311,8 +332,13 @@ jobs:
                   seen.add(cp);
                   const full = path.join(REPO_ROOT, cp);
                   try {
-                    if (!fs.statSync(full).isFile()) continue;
-                    files.push({ path: cp, content: fs.readFileSync(full, 'utf8') });
+                    const st = fs.statSync(full);
+                    if (!st.isFile()) continue;
+                    if (st.size > MAX_FILE_BYTES) { console.warn(`Lewati (terlalu besar): ${cp}`); continue; }
+                    if (totalBytes + st.size > MAX_TOTAL_BYTES) { console.warn(`Batas total payload tercapai — sisa file dilewati.`); break; }
+                    const content = fs.readFileSync(full, 'utf8');
+                    totalBytes += Buffer.byteLength(content);
+                    files.push({ path: cp, content });
                   } catch { /* file terhapus — AI dilarang menghapus, lewati */ }
                 }
                 if (files.length === 0) {
