@@ -31,8 +31,9 @@ permissions:
 
 jobs:
   ai-process:
-    # Cegah loop saat bot membalas komentarnya sendiri
-    if: "github.event.sender.type != 'Bot'"
+    # Cegah loop: bot membalas komentar → komentar bot memicu run baru.
+    # Guard 'Bot' saja TIDAK cukup karena AunuWise/RafaelPivots adalah akun User biasa.
+    if: "github.event.sender.type != 'Bot' && github.event.sender.login != 'AunuPivots' && github.event.sender.login != 'IKBAL-rgb'"
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -293,7 +294,9 @@ jobs:
               }
               const explanation = String(aiData.explanation || 'Perbaikan otomatis');
               updateChangelog(explanation, written); // changelog ikut commit yang sama
-              const changed = sh('git status --porcelain').trim().split('\n').map(l => l.trim()).filter(Boolean);
+              // Porcelain v1 = 'XY<spasi>path' (2 kolom status fixed-width). JANGAN trim() leading —
+              // ' M config.js'.trim().slice(3) = 'onfig.js' (huruf pertama hilang!) → file tak terbaca → commit skip.
+              const changed = sh('git status --porcelain').split('\n').map(l => l.replace(/\s+$/, '')).filter(l => l.trim().length > 2);
               if (changed.length === 0) {
                 console.log('Tidak ada perubahan aktual — skip commit.');
               } else {
