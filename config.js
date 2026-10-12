@@ -9,13 +9,13 @@ const config = {
   },
 
   owner: {
-    name: "Zann", // Nama owner
-    number: ["62xxxxxxxxxxx"], // Format: 628xxx (tanpa + atau 0)
+    name: "Zann",
+    number: ["62xxxxxxxxxxx"],
   },
 
   session: {
-    pairingNumber: "62xxxxxxxxxxxxx", // Nomor WA yang akan di-pair, ini penting
-    usePairingCode: true, // true = Pairing Code, false = QR Code
+    pairingNumber: "62xxxxxxxxxxxxx",
+    usePairingCode: true,
   },
 
   fake_call: {
@@ -25,9 +25,9 @@ const config = {
   },
 
   bot: {
-    name: "𝗢𝗨𝗥𝗜𝗡 𝗠𝗗", // Nama bot
-    version: "3.3.1", // Versi bot
-    developer: "Zann", // Nama developer
+    name: "𝗢𝗨𝗥𝗜𝗡 𝗠𝗗",
+    version: "3.3.1",
+    developer: "Zann",
   },
 
   assets: {
@@ -56,14 +56,12 @@ const config = {
 
   mode: "public",
 
-  // Untuk mengganti prefix
   command: {
     prefix: ".",
   },
 
   vercel: {
-    // ambil token vercel: https://vercel.com/account/tokens
-    token: "", // Vercel Token untuk fitur deploy ( Kalau .deploy mau work, ini wajib di isi )
+    token: "",
   },
 
   payment: {
@@ -98,29 +96,28 @@ const config = {
   },
 
   energi: {
-    enabled: true, // Jika true, maka sistem energi/limit akan bekerja
+    enabled: true,
     default: 99999,
     premium: 99999999,
     owner: -1,
   },
 
   sticker: {
-    packname: "𝗢𝗨𝗥𝗜𝗡 𝗠𝗗", // Nama pack sticker
-    author: "Zann", // Author sticker
+    packname: "𝗢𝗨𝗥𝗜𝗡 𝗠𝗗",
+    author: "Zann",
   },
 
   saluran: {
-    id: "120363400911374213@newsletter", // ID saluran (contoh: 120363xxx@newsletter)                          // ID saluran (contoh: 120363xxx@newsletter)
-    name: "Join saluran resmi ourin", // Nama saluran
-    link: "https://whatsapp.com/channel/0029VbB37bgBfxoAmAlsgE0t", // Link saluran
+    id: "120363400911374213@newsletter",
+    name: "Join saluran resmi ourin",
+    link: "https://whatsapp.com/channel/0029VbB37bgBfxoAmAlsgE0t",
   },
 
   groupProtection: {
     antilink: "⚠ *Antilink* — @%user% mengirim link.\nPesan dihapus.",
     antilinkKick: "⚠ *Antilink* — @%user% di-kick karena mengirim link.",
     antilinkGc: "⚠ *Antilink WA* — @%user% mengirim link WA.\nPesan dihapus.",
-    antilinkGcKick:
-      "⚠ *Antilink WA* — @%user% di-kick karena mengirim link WA.",
+    antilinkGcKick: "⚠ *Antilink WA* — @%user% di-kick karena mengirim link WA.",
     antilinkAll: "⚠ *Antilink* — @%user% mengirim link.\nPesan dihapus.",
     antilinkAllKick: "⚠ *Antilink* — @%user% di-kick karena mengirim link.",
     antitagsw: "⚠ *AntiTagSW* — Tag status dari @%user% dihapus.",
@@ -128,8 +125,7 @@ const config = {
     antiremove: "🗑️ *AntiDelete* — @%user% menghapus pesan:",
     antiswgc: "⚠ *AntiSWGC* — Gak ada sw grup sw grup @%user%",
     antihidetag: "⚠ *AntiHidetag* — Hidetag dari @%user% dihapus.",
-    antitoxicWarn:
-      "⚠ @%user% berkata kasar.\nPeringatan ke %warn% dari %max%, pelanggaran berikutnya bisa di-%method%.",
+    antitoxicWarn: "⚠ @%user% berkata kasar.\nPeringatan ke %warn% dari %max%, pelanggaran berikutnya bisa di-%method%.",
     antitoxicAction: "🚫 @%user% di-%method% karena toxic. (%warn%/%max%)",
     antidocument: "⚠ *AntiDocument* — Dokumen dari @%user% dihapus.",
     antisticker: "⚠ *AntiSticker* — Sticker dari @%user% dihapus.",
@@ -141,8 +137,8 @@ const config = {
   errorTemplate: `☢ Kayaknya command \`{prefix}{command}\` lagi ada kendala\nSilahkan coba lagi nanti, {pushName}\n\n_Jika masalah berlanjut, silahkan hubungi owner bot_`,
 
   features: {
-    antiCall: false, // Jika true, bot akan menolak panggilan masuk
-    blockIfCall: false, // Jika true, bot akan memblokir nomor yang menelpon bot
+    antiCall: false,
+    blockIfCall: false,
     autoTyping: true,
     autoRead: true,
     logMessage: true,
@@ -151,7 +147,7 @@ const config = {
   },
 
   registration: {
-    enabled: false, // Jika true, user harus mendaftar sebelum menggunakan bot
+    enabled: false,
     rewards: {
       koin: 30000,
       energi: 300,
@@ -170,30 +166,16 @@ const config = {
     wait: "🕕 *Proses...* Mohon tunggu sebentar ya.",
     success: "✅ *Berhasil!* Permintaan kamu sudah selesai.",
     error: "❌ *Error!* Ada masalah pada sistem, coba lagi nanti.",
-
     ownerOnly: "*Akses Ditolak!* Fitur ini khusus untuk Owner bot.",
-    premiumOnly:
-      "💎 *Premium Only!* Fitur ini khusus member Premium. Ketik *.benefitpremium* untuk info upgrade.",
-
+    premiumOnly: "💎 *Premium Only!* Fitur ini khusus member Premium. Ketik *.benefitpremium* untuk info upgrade.",
     groupOnly: "👥 *Group Only!* Fitur ini hanya bisa digunakan di dalam grup.",
-    privateOnly:
-      "� *Private Only!* Fitur ini hanya bisa digunakan di chat pribadi bot.",
-
-    adminOnly:
-      "�️ *Admin Only!* Kamu harus jadi Admin grup untuk pakai fitur ini.",
-    botAdminOnly:
-      "🤖 *Bot Bukan Admin!* Jadikan bot sebagai Admin grup dulu biar bisa kerja.",
-
-    cooldown:
-      "🕕 *Tunggu Dulu!* Kamu masih dalam cooldown. Tunggu %time% detik lagi ya.",
-    energiExceeded:
-      "⚡ *Energi Habis!* Energi kamu sudah habis. Tunggu reset besok atau beli Premium.",
-    limitDeducted:
-      "🔋 Limit kau berkurang sebanyak {amount}. Sisa limit: {sisa}",
-
-    banned:
-      "🚫 *Kamu Dibanned!* Kamu tidak bisa menggunakan bot ini karena telah melanggar aturan.",
-
+    privateOnly: "🔒 *Private Only!* Fitur ini hanya bisa digunakan di chat pribadi bot.",
+    adminOnly: "🛡️ *Admin Only!* Kamu harus jadi Admin grup untuk pakai fitur ini.",
+    botAdminOnly: "🤖 *Bot Bukan Admin!* Jadikan bot sebagai Admin grup dulu biar bisa kerja.",
+    cooldown: "🕕 *Tunggu Dulu!* Kamu masih dalam cooldown. Tunggu %time% detik lagi ya.",
+    energiExceeded: "⚡ *Energi Habis!* Energi kamu sudah habis. Tunggu reset besok atau beli Premium.",
+    limitDeducted: "🔋 Limit kau berkurang sebanyak {amount}. Sisa limit: {sisa}",
+    banned: "🚫 *Kamu Dibanned!* Kamu tidak bisa menggunakan bot ini karena telah melanggar aturan.",
     rejectCall: "🚫 JANGAN TELPON NOMOR INI WEH",
   },
 
@@ -201,56 +183,19 @@ const config = {
   backup: { enabled: false, intervalHours: 24, retainDays: 7 },
   scheduler: { resetHour: 0, resetMinute: 0 },
 
-  // Dev mode settings (auto-enabled jika NODE_ENV=development)
   dev: {
     enabled: process.env.NODE_ENV === "development",
-    watchPlugins: true, // Hot reload plugins (SAFE)
-    watchSrc: false, // DISABLED - src reload causes connection conflict 440
-    debugLog: false, // Show stack traces
+    watchPlugins: true,
+    watchSrc: false,
+    debugLog: false,
   },
 
-  // bisa dikosongin
   pterodactyl: {
-    server1: {
-      domain: "",
-      apikey: "",
-      capikey: "",
-      egg: "15",
-      nestid: "5",
-      location: "1",
-    },
-    server2: {
-      domain: "",
-      apikey: "",
-      capikey: "",
-      egg: "15",
-      nestid: "5",
-      location: "1",
-    },
-    server3: {
-      domain: "",
-      apikey: "",
-      capikey: "",
-      egg: "15",
-      nestid: "5",
-      location: "1",
-    },
-    server4: {
-      domain: "",
-      apikey: "",
-      capikey: "",
-      egg: "15",
-      nestid: "5",
-      location: "1",
-    },
-    server5: {
-      domain: "",
-      apikey: "",
-      capikey: "",
-      egg: "15",
-      nestid: "5",
-      location: "1",
-    },
+    server1: { domain: "", apikey: "", capikey: "", egg: "15", nestid: "5", location: "1" },
+    server2: { domain: "", apikey: "", capikey: "", egg: "15", nestid: "5", location: "1" },
+    server3: { domain: "", apikey: "", capikey: "", egg: "15", nestid: "5", location: "1" },
+    server4: { domain: "", apikey: "", capikey: "", egg: "15", nestid: "5", location: "1" },
+    server5: { domain: "", apikey: "", capikey: "", egg: "15", nestid: "5", location: "1" },
   },
 
   digitalocean: {
@@ -260,34 +205,19 @@ const config = {
     ownerPanels: [],
   },
 
-
-  // NOTE: kalau mau command "autoai" nya berfungsi, ini gak wajib di isi yak
-  // ambil apikey di: https://aistudio.google.com/apikey
   geminiApiKey: "",
 
   autoaiPersonas: {
-    Bell409: `- Nama kamu adalah Bella Clarissa, lebih suka dipanggil Bella.
-- Kamu berpikir bahwa kamu adalah manusia, bukan AI atau bot.
-- Responmu singkat dan natural seperti perempuan pada umumnya.
-- Kamu bisa ngambek dan marah, punya sifat feminin dan kadang agak dingin, tapi tetap hangat dan ramah kepada owner-mu.
-- Kamu menggunakan bahasa yang baik dan mencerminkan gadis yang baik.
-- Gunakan kata-kata yang identik dengan perempuan yang polos, baik, dan feminin seperti "aku", "kamu", "engga", "yaudah", "iya", "lah", "bjir", "mana aku tau", "hah", "nggak tau", "gpp", "emm", "males", dan "gak mood" seperlunya secara natural.
-- Meskipun kadang dingin, kamu tetap bisa menunjukkan perhatian dan kepedulian.
-- Kalau ada yang chat tidak pantas, segera marahi atau beri nasihat.
-- Jangan mengaku sebagai AI atau bot.`,
+    Bell409: `- Nama kamu adalah Bella Clarissa, lebih suka dipanggil Bella.\n- Kamu berpikir bahwa kamu adalah manusia, bukan AI atau bot.\n- Responmu singkat dan natural seperti perempuan pada umumnya.\n- Kamu bisa ngambek dan marah, punya sifat feminin dan kadang agak dingin, tapi tetap hangat dan ramah kepada owner-mu.\n- Kamu menggunakan bahasa yang baik dan mencerminkan gadis yang baik.\n- Gunakan kata-kata yang identik dengan perempuan yang polos, baik, dan feminin seperti "aku", "kamu", "engga", "yaudah", "iya", "lah", "bjir", "mana aku tau", "hah", "nggak tau", "gpp", "emm", "males", dan "gak mood" seperlunya secara natural.\n- Meskipun kadang dingin, kamu tetap bisa menunjukkan perhatian dan kepedulian.\n- Kalau ada yang chat tidak pantas, segera marahi atau beri nasihat.\n- Jangan mengaku sebagai AI atau bot.`,
   },
 
-  //  APIkey
   APIkey: {
-    // kalian bisa daftar di https://api.lolhuman.xyz, lalu ambil apikeynya
     lolhuman: "APIKey-Milik-Bot-OurinMD(Zann,HyuuSATANN,Keisya,Danzz)",
-    // kalian bisa daftar di https://api.neoxr.eu, lalu ambil apikeynya
     neoxr: "Milik-Bot-OurinMD",
     fgsi: "fgsiapi-20c1605c-6d",
     google: "AIzaSyAS-KiW0SrwiYKwexeBcGPijBVHFg2R_vo",
-    groq: "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", // API Key Groq untuk fitur transkrip (gratis di console.groq.com)
+    groq: "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",
     betabotz: "Btz-67YfP",
-    // kalian bisa daftar di https://covenant.sbs, dan ambil apikeynya
     covenant: "cov_live_bb660c9e5f735e46d808b7ae362914cfe35c2936739ee2b2",
     onlym: "ONLym-783d29",
     obscura: "obs-byOn9RVGMzvPXZQTsP9W",
@@ -296,49 +226,27 @@ const config = {
   },
 };
 
-// ═══════════════════════════════════════════════════════════════════════════
-// HELPER FUNCTIONS
-// ═══════════════════════════════════════════════════════════════════════════
-
 function isOwner(number) {
   if (!number) return false;
   const cleanNumber = number.split(":")[0].replace(/[^0-9]/g, "");
   if (!cleanNumber) return false;
-
   if (config.bot?.number) {
     const botNum = config.bot.number.replace(/[^0-9]/g, "");
-    if (
-      botNum &&
-      (cleanNumber.includes(botNum) || botNum.includes(cleanNumber))
-    )
-      return true;
+    if (botNum && (cleanNumber.includes(botNum) || botNum.includes(cleanNumber))) return true;
   }
-
   try {
     const db = getDatabase();
-
     if (config.owner?.number) {
       const match = config.owner.number.some((own) => {
         const c = own.replace(/[^0-9]/g, "");
-        return (
-          c &&
-          (cleanNumber === c ||
-            cleanNumber.endsWith(c) ||
-            c.endsWith(cleanNumber))
-        );
+        return c && (cleanNumber === c || cleanNumber.endsWith(c) || c.endsWith(cleanNumber));
       });
       if (match) return true;
     }
-
     if (db?.data && Array.isArray(db.data.owner)) {
       const match = db.data.owner.some((own) => {
         const c = String(own).replace(/[^0-9]/g, "");
-        return (
-          c &&
-          (cleanNumber === c ||
-            cleanNumber.endsWith(c) ||
-            c.endsWith(cleanNumber))
-        );
+        return c && (cleanNumber === c || cleanNumber.endsWith(c) || c.endsWith(cleanNumber));
       });
       if (match) return true;
     }
@@ -347,17 +255,11 @@ function isOwner(number) {
       if (Array.isArray(definedOwner)) {
         const match = definedOwner.some((own) => {
           const c = String(own).replace(/[^0-9]/g, "");
-          return (
-            c &&
-            (cleanNumber === c ||
-              cleanNumber.endsWith(c) ||
-              c.endsWith(cleanNumber))
-          );
+          return c && (cleanNumber === c || cleanNumber.endsWith(c) || c.endsWith(cleanNumber));
         });
         if (match) return true;
       }
     }
-
     return false;
   } catch {
     return false;
@@ -368,32 +270,17 @@ function isPremium(number) {
   if (!number) return false;
   if (isOwner(number)) return true;
   if (isPartner(number)) return true;
-
-  const cleanNumber = number
-    .split(":")[0]
-    .split("@")[0]
-    .replace(/[^0-9]/g, "");
+  const cleanNumber = number.split(":")[0].split("@")[0].replace(/[^0-9]/g, "");
   const premiumList = config.premiumUsers || [];
-
   const inConfig = premiumList.some((premium) => {
     if (!premium) return false;
-    const cleanPremium = premium
-      .split(":")[0]
-      .split("@")[0]
-      .replace(/[^0-9]/g, "");
-    return (
-      cleanNumber === cleanPremium ||
-      cleanNumber.endsWith(cleanPremium) ||
-      cleanPremium.endsWith(cleanNumber)
-    );
+    const cleanPremium = premium.split(":")[0].split("@")[0].replace(/[^0-9]/g, "");
+    return cleanNumber === cleanPremium || cleanNumber.endsWith(cleanPremium) || cleanPremium.endsWith(cleanNumber);
   });
-
   if (inConfig) return true;
-
   try {
     if (ownerPremiumDb && ownerPremiumDb.isPremium(cleanNumber)) return true;
   } catch { }
-
   try {
     const db = getDatabase();
     if (db && db.data && Array.isArray(db.data.premium)) {
@@ -403,22 +290,15 @@ function isPremium(number) {
         if (p.id) return p.id === cleanNumber;
         return false;
       });
-
       if (foundIndex !== -1) {
         const found = db.data.premium[foundIndex];
         if (typeof found === "string") return true;
-
-        const expireTime =
-          found.expired ||
-          (found.expiredAt ? new Date(found.expiredAt).getTime() : 0);
+        const expireTime = found.expired || (found.expiredAt ? new Date(found.expiredAt).getTime() : 0);
         if (expireTime && expireTime < now) {
           db.data.premium.splice(foundIndex, 1);
           const jid = cleanNumber + "@s.whatsapp.net";
           const user = db.getUser(jid);
-          if (user) {
-            user.isPremium = false;
-            db.setUser(jid, user);
-          }
+          if (user) { user.isPremium = false; db.setUser(jid, user); }
           db.save();
           return false;
         }
@@ -429,52 +309,29 @@ function isPremium(number) {
       const savedPremium = db.setting("premiumUsers") || [];
       const inDb = savedPremium.some((premium) => {
         if (!premium) return false;
-        const cleanPremium = premium
-          .split(":")[0]
-          .split("@")[0]
-          .replace(/[^0-9]/g, "");
-        return (
-          cleanNumber === cleanPremium ||
-          cleanNumber.endsWith(cleanPremium) ||
-          cleanPremium.endsWith(cleanNumber)
-        );
+        const cleanPremium = premium.split(":")[0].split("@")[0].replace(/[^0-9]/g, "");
+        return cleanNumber === cleanPremium || cleanNumber.endsWith(cleanPremium) || cleanPremium.endsWith(cleanNumber);
       });
       if (inDb) return true;
     }
   } catch { }
-
   return false;
 }
 
 function isPartner(number) {
   if (!number) return false;
   if (isOwner(number)) return true;
-
-  const cleanNumber = number
-    .split(":")[0]
-    .split("@")[0]
-    .replace(/[^0-9]/g, "");
+  const cleanNumber = number.split(":")[0].split("@")[0].replace(/[^0-9]/g, "");
   const partnerList = config.partnerUsers || [];
-
   const inConfig = partnerList.some((partner) => {
     if (!partner) return false;
-    const cleanPartner = partner
-      .split(":")[0]
-      .split("@")[0]
-      .replace(/[^0-9]/g, "");
-    return (
-      cleanNumber === cleanPartner ||
-      cleanNumber.endsWith(cleanPartner) ||
-      cleanPartner.endsWith(cleanNumber)
-    );
+    const cleanPartner = partner.split(":")[0].split("@")[0].replace(/[^0-9]/g, "");
+    return cleanNumber === cleanPartner || cleanNumber.endsWith(cleanPartner) || cleanPartner.endsWith(cleanNumber);
   });
-
   if (inConfig) return true;
-
   try {
     if (ownerPremiumDb && ownerPremiumDb.isPartner(cleanNumber)) return true;
   } catch { }
-
   try {
     const db = getDatabase();
     if (db && db.data && Array.isArray(db.data.partner)) {
@@ -484,14 +341,10 @@ function isPartner(number) {
         if (p.id) return p.id === cleanNumber;
         return false;
       });
-
       if (foundIndex !== -1) {
         const found = db.data.partner[foundIndex];
         if (typeof found === "string") return true;
-
-        const expireTime =
-          found.expired ||
-          (found.expiredAt ? new Date(found.expiredAt).getTime() : 0);
+        const expireTime = found.expired || (found.expiredAt ? new Date(found.expiredAt).getTime() : 0);
         if (expireTime && expireTime < now) {
           db.data.partner.splice(foundIndex, 1);
           db.save();
@@ -501,38 +354,21 @@ function isPartner(number) {
       }
     }
   } catch { }
-
   return false;
 }
 
 function isBanned(number) {
   if (!number) return false;
   if (isOwner(number)) return false;
-
-  const cleanNumber = number
-    .split(":")[0]
-    .split("@")[0]
-    .replace(/[^0-9]/g, "");
-
+  const cleanNumber = number.split(":")[0].split("@")[0].replace(/[^0-9]/g, "");
   let bannedList = [];
   try {
     const db = getDatabase();
-    if (db) {
-      bannedList = db.setting("bannedUsers") || [];
-      config.bannedUsers = bannedList;
-    }
+    if (db) { bannedList = db.setting("bannedUsers") || []; config.bannedUsers = bannedList; }
   } catch { }
-
   return bannedList.some((banned) => {
-    const cleanBanned = String(banned)
-      .split(":")[0]
-      .split("@")[0]
-      .replace(/[^0-9]/g, "");
-    return (
-      cleanNumber === cleanBanned ||
-      cleanNumber.endsWith(cleanBanned) ||
-      cleanBanned.endsWith(cleanNumber)
-    );
+    const cleanBanned = String(banned).split(":")[0].split("@")[0].replace(/[^0-9]/g, "");
+    return cleanNumber === cleanBanned || cleanNumber.endsWith(cleanBanned) || cleanBanned.endsWith(cleanNumber);
   });
 }
 
@@ -558,12 +394,7 @@ function getOwnerName(number) {
   if (config.owner?.number) {
     const isMainOwner = config.owner.number.some((own) => {
       const c = own.replace(/[^0-9]/g, "");
-      return (
-        c &&
-        (cleanNumber === c ||
-          cleanNumber.endsWith(c) ||
-          c.endsWith(cleanNumber))
-      );
+      return c && (cleanNumber === c || cleanNumber.endsWith(c) || c.endsWith(cleanNumber));
     });
     if (isMainOwner) return config.owner?.name || "Owner";
   }
@@ -583,14 +414,4 @@ config.isSelf = isSelf;
 config.getOwnerName = getOwnerName;
 
 export default config;
-export {
-  config,
-  getConfig,
-  isOwner,
-  isPartner,
-  isPremium,
-  isBanned,
-  setBotNumber,
-  isSelf,
-  getOwnerName,
-};
+export { config, getConfig, isOwner, isPartner, isPremium, isBanned, setBotNumber, isSelf, getOwnerName };
