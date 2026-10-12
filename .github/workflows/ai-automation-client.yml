@@ -24,9 +24,10 @@ concurrency:
   group: ai-automation-saas-client
   cancel-in-progress: false
 
+# GITHUB_TOKEN hanya untuk checkout (read). Semua write (commit/issue/release)
+# dikerjakan worker server-side via /v1/agent/* memakai PAT bot.
 permissions:
-  contents: write
-  issues: write
+  contents: read
 
 jobs:
   ai-process:
@@ -259,18 +260,23 @@ jobs:
               }
             }
 
+            // Pre-flight: pastikan bot punya akses tulis SEBELUM panggil AI.
+            // Gagal di sini = gagal cepat tanpa membuang token/kuota AI.
+            let botName = 'AunuWise';
+            try {
+              const chk = await agentCall('/v1/agent/check-access', {}, 'GET');
+              if (chk && chk.bot && chk.bot.display_name) botName = chk.bot.display_name;
+              console.log(`Pre-flight OK — akses tulis ${botName} terkonfirmasi. Lanjut ke AI.`);
+            } catch (e) {
+              const msg = (e.response && e.response.data && e.response.data.error) || e.message;
+              throw new Error(`Pre-flight gagal, AI tidak dipanggil (hemat token): ${msg}`);
+            }
+
             const aiData = await callAI([
               { role: 'system', content: systemPrompt },
               { role: 'user', content: userPrompt }
             ]);
             console.log('AI response parsed OK:', aiData.explanation);
-
-            // Identitas bot untuk license ini (basic–reseller: AunuWise, admin/owner: RafaelPivots)
-            let botName = 'AunuWise';
-            try {
-              const who = await agentCall('/v1/agent/whoami', {}, 'GET');
-              if (who && who.display_name) botName = who.display_name;
-            } catch { /* fallback ke default */ }
 
             // 1. Tulis file + CHANGELOG, lalu commit VIA WORKER (dilewati untuk komentar PR).
             //    Tidak ada git push / token GitHub di sini — worker yang commit pakai PAT IKBAL-rgb.
